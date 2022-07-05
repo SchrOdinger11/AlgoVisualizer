@@ -6,7 +6,56 @@
   margin-top: 5%;
   margin-left: 0.1%;
   margin-right: 0.1%;
+  margin-bottom: -55%;
+
+  background-color: rgb(26, 142, 245);
+  border-color: rgb(127, 140, 255);
+ 
+  
+  
+  
+
+  cursor: pointer;
+
 }
+.button2{
+  
+  margin-top: 5%;
+  margin-left: 0.1%;
+  margin-right: 0.1%;
+  margin-bottom: -55%;
+
+  background-color: rgb(26, 142, 245);
+  border-color: rgb(127, 140, 255);
+ 
+  
+  
+  
+
+
+  cursor: pointer;
+
+}
+.button3{
+  border-color: aliceblue;
+  margin-top: 5%;
+  margin-left: 0.1%;
+  margin-right: 0.1%;
+  margin-bottom: -100%;
+
+  background-color: rgb(26, 142, 245);
+  border-color: rgb(127, 140, 255);
+
+ 
+  
+  
+  
+ 
+
+  cursor: pointer;
+
+}
+
 
 
 .Navbar {
@@ -35,4 +84,6 @@ text-align: center;
 }
 .clearbutton{
   margin-left: 80%;
+  background-color: lightsteelblue;
+  border-radius: 5px;
 }

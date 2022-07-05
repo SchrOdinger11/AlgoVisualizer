@@ -146,15 +146,15 @@ export default class PathfindingVisualizer extends Component {
 
 
 
-      <div className='button1'>
-        <button  onClick={() => this.visualizeDijkstra()}>
+      <div >
+        <button className='button1' onClick={() => this.visualizeDijkstra()}>
           Visualize Dijkstra's Algorithm
-        </button>
-        <button  onClick={() => this.visualizebfs()}>
+        </button>&nbsp;&nbsp;&nbsp;
+        <button className='button2' onClick={() => this.visualizebfs()}>
           Breadth First Search
-        </button>
+        </button>&nbsp;&nbsp;&nbsp;
 
-        <button  onClick={() => this.visualizedfs()}>
+        <button className='button3' onClick={() => this.visualizedfs()}>
           Depth First Search
         </button>
 
