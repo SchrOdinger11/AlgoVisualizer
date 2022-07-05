@@ -5,7 +5,8 @@ import {dijkstra, shortestPathOrder} from '../algorithms/dijkstra';
 import {bfs} from '../algorithms/bfs'
 import {dfs} from '../algorithms/dfs'
 import './PathfindingVisualizer.css';
-
+import { Helmet } from 'react-helmet';
+import { useState } from 'react';
 const starting_row = 10;
 const starting_col = 10;
 const ending_row = 10;  //19
@@ -16,8 +17,6 @@ const ending_col = 45;//45
    
 
 export default class PathfindingVisualizer extends Component {
-
-
 
 
 
@@ -51,6 +50,12 @@ export default class PathfindingVisualizer extends Component {
     this.setState({mouseIsPressed: false});
   }
 
+
+
+
+
+
+
   animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder) {
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
@@ -76,7 +81,7 @@ export default class PathfindingVisualizer extends Component {
       }, 50 * i);
     }
   }
-
+  
   visualizeDijkstra() {
     const {grid} = this.state;
     const startNode = grid[starting_row][starting_col];
@@ -111,28 +116,57 @@ export default class PathfindingVisualizer extends Component {
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
 
-
+   reset  (){
+    window.location.reload();
+}
 
 
 
   render() {
     const {grid, mouseIsPressed} = this.state;
-    
+   
     return (
       <>
-    
-        <button onClick={() => this.visualizeDijkstra()}>
+
+
+<div>
+<header className="Navbar">
+        <div className="Toolbar">
+         
+          <div className="Title" > Algorithm Visualizer </div>
+          
+          <button  className="clearbutton" onClick={()=>this.reset()}>Clear</button>
+        
+        </div>
+      </header>
+       
+
+      </div>
+
+
+
+
+      <div className='button1'>
+        <button  onClick={() => this.visualizeDijkstra()}>
           Visualize Dijkstra's Algorithm
         </button>
-        <button onClick={() => this.visualizebfs()}>
+        <button  onClick={() => this.visualizebfs()}>
           Breadth First Search
         </button>
 
-        <button onClick={() => this.visualizedfs()}>
+        <button  onClick={() => this.visualizedfs()}>
           Depth First Search
         </button>
 
 
+
+
+    
+
+
+        </div>
+
+       
         
         <div className="grid">
           {grid.map((row, rowIdx) => {
