@@ -1,4 +1,4 @@
-import { shortestPathOrder } from "./dijkstra";
+import { shortestPathOrder,unvisitedNeighbors } from "./dijkstra";
 export function dfs(grid,start,finish){
 
 
@@ -17,13 +17,9 @@ export function dfs(grid,start,finish){
         let currentNode = stack.pop();
         
 
-
-        let n = [];
-            const {col, row} = currentNode;
-            if (row > 0) n.push(grid[row - 1][col]);
-            if (row < grid.length - 1) n.push(grid[row + 1][col]);
-            if (col > 0) n.push(grid[row][col - 1]);
-            if (col < grid[0].length - 1) n.push(grid[row][col + 1]);
+        let n=[];
+        n=unvisitedNeighbors(currentNode,grid);
+       
 
         if(currentNode === finish)
         {
@@ -34,6 +30,7 @@ export function dfs(grid,start,finish){
 
         for(let i=0;i<n.length;i++)
         {
+            if(currentNode !== finish){
             if(!visitedArray.includes(n[i]) && !n[i].wall)
             {
                 n[i].previousNode = currentNode;
@@ -41,7 +38,9 @@ export function dfs(grid,start,finish){
                 stack.push(n[i]);
             }
             
-
+        }else{
+            break;
+        }
         }
     }
 

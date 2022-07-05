@@ -16,7 +16,8 @@ export function dijkstra(grid, start, finish) {
     if (closestNode === finish) return visitedArray;
     updateUnvisitedNeighbors(closestNode, grid);
   }
-}function unvisitedNeighbors(node, grid) {
+}
+export function unvisitedNeighbors(node, grid) {
   const neighbors = [];
   const {col, row} = node;
   if (row > 0) neighbors.push(grid[row - 1][col]);

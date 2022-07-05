@@ -1,4 +1,4 @@
-import {shortestPathOrder } from "./dijkstra";
+import { shortestPathOrder,unvisitedNeighbors } from "./dijkstra";
 export function bfs(grid, start, finish) {
     //console.log(start.d)
     start.d=1;
@@ -26,18 +26,23 @@ export function bfs(grid, start, finish) {
             queue= queue.filter((node)=> node!== currentNode);
 
 
-            let neighbors = [];
-            const {col, row} = currentNode;
-            if (row > 0) neighbors.push(grid[row - 1][col]);
-            if (row < grid.length - 1) neighbors.push(grid[row + 1][col]);
-            if (col > 0) neighbors.push(grid[row][col - 1]);
-            if (col < grid[0].length - 1) neighbors.push(grid[row][col + 1]);
 
 
-            for(let i=0;i< neighbors.length;i++)
+        let n=[];
+        n=unvisitedNeighbors(currentNode,grid);
+
+            // let neighbors = [];
+            // const {col, row} = currentNode;
+            // if (row > 0) neighbors.push(grid[row - 1][col]);
+            // if (row < grid.length - 1) neighbors.push(grid[row + 1][col]);
+            // if (col > 0) neighbors.push(grid[row][col - 1]);
+            // if (col < grid[0].length - 1) neighbors.push(grid[row][col + 1]);
+
+
+            for(let i=0;i< n.length;i++)
             {
                
-                let neighbour =  neighbors[i];
+                let neighbour =  n[i];
                 if(!temp.includes(neighbour) && !neighbour.wall)
                 {
                     
