@@ -56,7 +56,7 @@ export default class PathfindingVisualizer extends Component {
 
 
 
-  animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder) {
+  animateAlgo(visitedNodesInOrder, nodesInShortestPathOrder) {
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
@@ -89,7 +89,7 @@ export default class PathfindingVisualizer extends Component {
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
     const nodesInShortestPathOrder = shortestPathOrder(finishNode);
     console.log(visitedNodesInOrder)
-   this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+   this.animateAlgo(visitedNodesInOrder, nodesInShortestPathOrder);
   }
   visualizebfs() {
     
@@ -100,7 +100,7 @@ export default class PathfindingVisualizer extends Component {
     const visitedNodesInOrder = x.visitedArray ;
     const nodesInShortestPathOrder = x.nodesInShortestPathOrder;
    //console.log(x.nodesInShortestPathOrder)
-    this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+    this.animateAlgo(visitedNodesInOrder, nodesInShortestPathOrder);
   }
 
 
@@ -113,7 +113,7 @@ export default class PathfindingVisualizer extends Component {
     const visitedNodesInOrder = x.visitedArray;
     const nodesInShortestPathOrder = x.nodesInShortestPathOrder;
    //console.log(x.nodesInShortestPathOrder)
-    this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+    this.animateAlgo(visitedNodesInOrder, nodesInShortestPathOrder);
   }
 
    reset  (){
