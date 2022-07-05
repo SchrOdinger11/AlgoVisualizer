@@ -1,36 +1,22 @@
 
 export function dijkstra(grid, start, finish) {
   start.d = 0;
-  const visitedNodes = [];
+  const visitedArray = [];
 
-  const unvisitedNodes = getthenodes(grid);
+  const unvisitedNodes = nodesFromgrid(grid);
   while (!!unvisitedNodes.length) {
-    sortNodesByDistance(unvisitedNodes);
+    sort_by_distance(unvisitedNodes);
     const closestNode = unvisitedNodes.shift();
     
-    if (closestNode.isWall) continue;
+    if (closestNode.wall) continue;
   
-    if (closestNode.d === Infinity) return visitedNodes;
+    if (closestNode.d === Infinity) return visitedArray;
     closestNode.isVisited = true;
-    visitedNodes.push(closestNode);
-    if (closestNode === finish) return visitedNodes;
+    visitedArray.push(closestNode);
+    if (closestNode === finish) return visitedArray;
     updateUnvisitedNeighbors(closestNode, grid);
   }
-}
-
-function sortNodesByDistance(unvisitedNodes) {
-  unvisitedNodes.sort((nodeA, nodeB) => nodeA.d - nodeB.d);
-}
-
-function updateUnvisitedNeighbors(node, grid) {
-  const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
-  for (const neighbor of unvisitedNeighbors) {
-    neighbor.d = node.d + 1;
-    neighbor.previousNode = node;
-  }
-}
-
-function getUnvisitedNeighbors(node, grid) {
+}function unvisitedNeighbors(node, grid) {
   const neighbors = [];
   const {col, row} = node;
   if (row > 0) neighbors.push(grid[row - 1][col]);
@@ -40,7 +26,21 @@ function getUnvisitedNeighbors(node, grid) {
   return neighbors.filter(neighbor => !neighbor.isVisited);
 }
 
-function getthenodes(grid) {
+function sort_by_distance(unvisitedNodes) {
+  unvisitedNodes.sort((nodeA, nodeB) => nodeA.d - nodeB.d);
+}
+
+function updateUnvisitedNeighbors(node, grid) {
+  const unvisitedNeighborss = unvisitedNeighbors(node, grid);
+  for (const neighbor of unvisitedNeighborss) {
+    neighbor.d = node.d + 1;
+    neighbor.previousNode = node;
+  }
+}
+
+
+
+function nodesFromgrid(grid) {
   const n = [];
   for (const row of grid) {
     for (const node of row) {
@@ -53,9 +53,9 @@ function getthenodes(grid) {
   return n;
 }
 
-export function getNodesInShortestPathOrder(finishNode) {
+export function shortestPathOrder(finish) {
   const nodesInShortestPathOrder = [];
-  let currentNode = finishNode;
+  let currentNode = finish;
   while (currentNode !== null) {
     nodesInShortestPathOrder.unshift(currentNode);
     currentNode = currentNode.previousNode;

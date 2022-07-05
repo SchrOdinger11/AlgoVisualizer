@@ -8,7 +8,7 @@ export default class Node extends Component {
       col,
       isFinish,
       isStart,
-      isWall,
+      wall,
       onMouseDown,
       onMouseEnter,
       onMouseUp,
@@ -18,7 +18,7 @@ export default class Node extends Component {
       ? 'node-finish'
       : isStart
       ? 'node-start'
-      : isWall
+      : wall
       ? 'node-wall'
       : '';
 

@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 
 import Node from './Node/Node';
-import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
+import {dijkstra, shortestPathOrder} from '../algorithms/dijkstra';
 import {bfs} from '../algorithms/bfs'
 import {dfs} from '../algorithms/dfs'
 import './PathfindingVisualizer.css';
 
-const starting_row = 0;
-const starting_col = 0;
-const ending_row = 19;
-const ending_col = 45;
+const starting_row = 10;
+const starting_col = 10;
+const ending_row = 10;  //19
+const ending_col = 45;//45
 
 
 
@@ -82,7 +82,7 @@ export default class PathfindingVisualizer extends Component {
     const startNode = grid[starting_row][starting_col];
     const finishNode = grid[ending_row][ending_col];
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
-    const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+    const nodesInShortestPathOrder = shortestPathOrder(finishNode);
     console.log(visitedNodesInOrder)
    this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
@@ -92,7 +92,7 @@ export default class PathfindingVisualizer extends Component {
     const startNode = grid[starting_row][starting_col];
     const finishNode = grid[ending_row][ending_col];
     const x=bfs(grid, startNode, finishNode);
-    const visitedNodesInOrder = x.visitedNodes;
+    const visitedNodesInOrder = x.visitedArray ;
     const nodesInShortestPathOrder = x.nodesInShortestPathOrder;
    //console.log(x.nodesInShortestPathOrder)
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
@@ -105,7 +105,7 @@ export default class PathfindingVisualizer extends Component {
     const startNode = grid[starting_row][starting_col];
     const finishNode = grid[ending_row][ending_col];
     const x=dfs(grid, startNode, finishNode);
-    const visitedNodesInOrder = x.visitedNodes;
+    const visitedNodesInOrder = x.visitedArray;
     const nodesInShortestPathOrder = x.nodesInShortestPathOrder;
    //console.log(x.nodesInShortestPathOrder)
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
@@ -140,7 +140,7 @@ export default class PathfindingVisualizer extends Component {
               <div key={rowIdx}>
                 
                 {row.map((node, nodeIdx) => {
-                  const {row, col, isFinish, isStart, isWall} = node;
+                  const {row, col, isFinish, isStart, wall} = node;
                   return (
 
                     
@@ -149,7 +149,7 @@ export default class PathfindingVisualizer extends Component {
                       col={col}
                       isFinish={isFinish}
                       isStart={isStart}
-                      isWall={isWall}
+                      wall={wall}
                       mouseIsPressed={mouseIsPressed}
                       onMouseDown={(row, col) => this.handleMouseDown(row, col)}
                       onMouseEnter={(row, col) =>
@@ -194,8 +194,8 @@ const createNode = (col, row) => {
     isFinish: row === ending_row && col === ending_col,
     d: Infinity,
 
-    isVisited: false,
-    isWall: false,
+    visited: false,
+    wall: false,
     previousNode: null,
 
 
@@ -211,7 +211,7 @@ const getNewGridWithWallToggled = (grid, row, col) => {
   const node = newGrid[row][col];
   const newNode = {
     ...node,
-    isWall: !node.isWall,
+    wall: !node.wall,
   };
   newGrid[row][col] = newNode;
   return newGrid;
