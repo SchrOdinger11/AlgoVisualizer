@@ -9,4 +9,4 @@ Algorithms visualized:
 * Breadth First Search
 * Depth First Search
 
-View the deployed web-app here : [algorithmsssvisualizer.netlify.app](algorithmsssvisualizer.netlify.app)
+View the deployed web-app here : [algorithmsssvisualizer.netlify.app](https://algo-visualizer-ten.vercel.app/)
